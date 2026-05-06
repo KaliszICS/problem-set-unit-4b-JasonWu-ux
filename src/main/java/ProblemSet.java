@@ -57,15 +57,15 @@ public class ProblemSet {
     	for (int row = 0; row < 5; row++) {
         for (int col = 0; col < 5; col++) {
             
-            int tileNumber = (row * 5) + col + 1;
+            int NumberOfTile = (row * 5) + col + 1;
 
-            if (tileNumber == 1) {
+            if (NumberOfTile == 1) {
                 tiles[row][col] = "Start";
-            } else if (tileNumber == 25) {
+            } else if (NumberOfTile == 25) {
                 tiles[row][col] = "End";
-            } else if (tileNumber % 6 == 0) {
+            } else if (NumberOfTile % 6 == 0) {
                 tiles[row][col] = "Penalty";
-            } else if (tileNumber % 4 == 0) {
+            } else if (NumberOfTile % 4 == 0) {
                 tiles[row][col] = "Bonus";
             } else {
                 tiles[row][col] = "Empty";
@@ -73,7 +73,6 @@ public class ProblemSet {
         }
     }
 }
-
 		public int getRows() {
 		return tiles.length;
 	}
@@ -87,7 +86,44 @@ public class ProblemSet {
 		} 
 		return tiles[row][col];
 	}
-}
-}
-	
+	public void setTile(int row, int col, String type) {
+		if (row < 0 || row >= getRows() || col < 0 || col >= getCols()) {
+			throw new ArrayIndexOutOfBoundsException("Out of Bounds");
 
+		}
+		tiles[row][col] = type;
+	}
+	public void placePiece(GamePiece piece, int row, int col) {
+		if (piece == null) {
+			throw new NullPointerException("piece is null");
+	}
+		 if (row < 0 || row >= getRows() || col < 0 || col >= getCols()) {
+		throw new ArrayIndexOutOfBoundsException("Out of Bounds");
+		 }
+		pieces[row][col] = piece;
+	}
+	public GamePiece removePiece(int row, int col) {
+		if (row < 0 || row >= getRows() || col < 0 || col >= getCols()) {
+		throw new ArrayIndexOutOfBoundsException("Out of Bounds");
+		}
+		if (pieces[row][col] == null) {
+		throw new NullPointerException("no piece is present");
+		}
+		GamePiece temp = pieces[row][col];
+		pieces[row][col] = null;
+		return temp;
+	} 
+	public GamePiece getPiece(int row, int col) {
+		if (row < 0 || row >= getRows() || col < 0 || col >= getCols()) {
+			throw new ArrayIndexOutOfBoundsException("Out of Bounds");
+		}
+		return pieces[row][col];
+	}
+	public boolean hasPiece(int row, int col) {
+		if (row < 0 || row >= getRows() || col < 0 || col >= getCols()) {
+			throw new ArrayIndexOutOfBoundsException("Out of Bounds");
+		}
+		return pieces[row][col] != null;
+	}
+}
+}
