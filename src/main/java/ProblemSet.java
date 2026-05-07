@@ -5,7 +5,7 @@
 public class ProblemSet {
 /**
  * runs and test code to see if it works
- * @param args commands line of arguments
+ * @param args command line of arguments
  */	
 	public static void main(String args[]) {
 		GamePiece piece1 = new GamePiece("Pawn" , "Red", 3);
